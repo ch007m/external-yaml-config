@@ -1,5 +1,6 @@
 package io.halkyon;
 
+import io.halkyon.configsource.ExternalClientConfigSource;
 import io.quarkus.runtime.LaunchMode;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
