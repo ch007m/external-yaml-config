@@ -1,14 +1,17 @@
 package io.halkyon;
 
+import io.quarkus.runtime.QuarkusApplication;
 import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.ConfigProvider;
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 import java.io.File;
+import java.util.concurrent.Callable;
 
 @Command(name = "mycli-app", mixinStandardHelpOptions = true, version = "mycli-app 1.0")
-public class ClientCommands implements Runnable {
+public class ClientCommands implements Callable, QuarkusApplication {
 
     @Inject
     ClientConfig config;
@@ -17,7 +20,13 @@ public class ClientCommands implements Runnable {
     File externalConfigFile;
 
     @Override
-    public void run() {
+    public int run(String... args) throws Exception {
+        System.out.println("Picocli started ...");
+        return new CommandLine(ClientCommands.class).execute(args);
+    }
+
+    @Override
+    public Integer call() throws Exception {
         /*
         if (externalConfigFile != null) {
             if (!externalConfigFile.exists() || !externalConfigFile.isFile()) {
@@ -38,5 +47,6 @@ public class ClientCommands implements Runnable {
                 System.out.println("\n");
             }
         });
+        return 0;
     }
 }
