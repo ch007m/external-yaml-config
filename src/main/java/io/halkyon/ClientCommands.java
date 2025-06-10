@@ -1,27 +1,23 @@
 package io.halkyon;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import picocli.CommandLine;
+import jakarta.inject.Inject;
+import org.eclipse.microprofile.config.ConfigProvider;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 import java.io.File;
-import java.util.concurrent.Callable;
 
-@ApplicationScoped
 @Command(name = "mycli-app", mixinStandardHelpOptions = true, version = "mycli-app 1.0")
-public class CliAppRunner implements Callable<Integer> {
+public class ClientCommands implements Runnable {
+
+    @Inject
+    ClientConfig config;
 
     @Option(names = {"-c", "--config-file"}, description = "Path to an external YAML configuration file.", paramLabel = "FILE")
     File externalConfigFile;
 
-    public static void main(String... args) {
-        int exitCode = new CommandLine(new CliAppRunner()).execute(args);
-        System.exit(exitCode);
-    }
-
     @Override
-    public Integer call() throws Exception {
+    public void run() {
         /*
         if (externalConfigFile != null) {
             if (!externalConfigFile.exists() || !externalConfigFile.isFile()) {
@@ -34,8 +30,13 @@ public class CliAppRunner implements Callable<Integer> {
             System.out.println("No external config file specified. Using only internal application.yaml.");
         }
         */
-        System.out.println("TODO");
-
-        return 0;
+        var props = ConfigProvider.getConfig().getPropertyNames();
+        props.forEach(n -> {
+            if (n.startsWith("kind")) {
+                System.out.println("Source : " + ConfigProvider.getConfig().getConfigValue(n).getSourceName());
+                System.out.println("Name: " + n + ", value : " + ConfigProvider.getConfig().getConfigValue(n).getValue());
+                System.out.println("\n");
+            }
+        });
     }
 }

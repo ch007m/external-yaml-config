@@ -1,7 +1,8 @@
 io/halkyon/configsource/YamlUtils.class
 io/halkyon/configsource/YamlUtils$StringConstructor.class
 io/halkyon/configsource/ExternalClientConfigSource.class
+io/halkyon/ClientCommands.class
 io/halkyon/SharedApplication.class
-io/halkyon/CliAppRunner.class
+io/halkyon/ClientApplication.class
 io/halkyon/ClientConfig.class
 io/halkyon/ClientConfig$Binding.class

@@ -32,7 +32,7 @@ public class ExternalClientConfigSource extends YamlUtils implements ConfigSourc
 
                             for (Map.Entry<String, String> entry : yamlEntries.entrySet()) {
                                 System.out.println(entry);
-                                ExternalClientConfigSource.put(entry.getKey(), entry.getValue());
+                                put(entry.getKey(), entry.getValue());
                             }
                         } catch (IOException e) {
                             throw new RuntimeException(e);

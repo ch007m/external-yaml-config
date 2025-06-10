@@ -1,4 +1,5 @@
-/Users/cmoullia/code/halkyonio/java-kind-cli-and-operator/external-config/src/main/java/io/halkyon/CliAppRunner.java
+/Users/cmoullia/code/halkyonio/java-kind-cli-and-operator/external-config/src/main/java/io/halkyon/ClientApplication.java
+/Users/cmoullia/code/halkyonio/java-kind-cli-and-operator/external-config/src/main/java/io/halkyon/ClientCommands.java
 /Users/cmoullia/code/halkyonio/java-kind-cli-and-operator/external-config/src/main/java/io/halkyon/ClientConfig.java
 /Users/cmoullia/code/halkyonio/java-kind-cli-and-operator/external-config/src/main/java/io/halkyon/SharedApplication.java
 /Users/cmoullia/code/halkyonio/java-kind-cli-and-operator/external-config/src/main/java/io/halkyon/configsource/ExternalClientConfigSource.java
