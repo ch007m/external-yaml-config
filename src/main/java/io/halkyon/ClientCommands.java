@@ -1,6 +1,6 @@
 package io.halkyon;
 
-import io.quarkus.runtime.Quarkus;
+import jakarta.enterprise.context.ApplicationScoped;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -8,7 +8,7 @@ import picocli.CommandLine.Option;
 import java.io.File;
 import java.util.concurrent.Callable;
 
-//@QuarkusMain
+@ApplicationScoped
 @Command(name = "mycli-app", mixinStandardHelpOptions = true, version = "mycli-app 1.0")
 public class CliAppRunner implements Callable<Integer> {
 
@@ -22,6 +22,7 @@ public class CliAppRunner implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
+        /*
         if (externalConfigFile != null) {
             if (!externalConfigFile.exists() || !externalConfigFile.isFile()) {
                 System.err.println("Error: External config file not found or is not a regular file: " + externalConfigFile.getAbsolutePath());
@@ -32,6 +33,9 @@ public class CliAppRunner implements Callable<Integer> {
         } else {
             System.out.println("No external config file specified. Using only internal application.yaml.");
         }
+        */
+        System.out.println("TODO");
+
         return 0;
     }
 }
