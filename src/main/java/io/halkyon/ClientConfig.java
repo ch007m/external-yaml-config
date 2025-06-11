@@ -7,12 +7,13 @@ import io.smallrye.config.WithName;
 import java.util.List;
 import java.util.Optional;
 
-@ConfigMapping(prefix = "kind",namingStrategy = ConfigMapping.NamingStrategy.VERBATIM)
+@ConfigMapping(prefix = "kind", namingStrategy = ConfigMapping.NamingStrategy.VERBATIM)
 public interface ClientConfig {
     /**
      * Version of kubernetes to be installed
      */
     @WithName("kubernetesVersion")
+    @WithDefault("v1.29.0")
     Optional<String> kubernetesVersion();
 
     /**
@@ -24,12 +25,13 @@ public interface ClientConfig {
     /**
      * Labels to be added to the Node
      */
+    @WithDefault("ingress-ready=true")
     Optional<String> labels();
 
     /**
      * Engine provider: podman or docker
      */
-    @WithDefault("podman")
+    @WithDefault("docker")
     String providerId();
 
     /**
@@ -37,19 +39,19 @@ public interface ClientConfig {
      * It represents the ports to be bind between the container and the host
      */
     @WithName("bindings")
-     List<Binding> binding();
+    List<Binding> binding();
 
-     interface Binding {
-         /**
-          * hostPort
-          */
-         @WithName("hostPort")
-         String hostPort();
+    interface Binding {
+        /**
+         * hostPort
+         */
+        @WithName("hostPort")
+        String hostPort();
 
-         /**
-          * containerPort
-          */
-         @WithName("containerPort")
-         String containerPort();
-     }
+        /**
+         * containerPort
+         */
+        @WithName("containerPort")
+        String containerPort();
+    }
 }
