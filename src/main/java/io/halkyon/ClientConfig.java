@@ -7,7 +7,7 @@ import io.smallrye.config.WithName;
 import java.util.List;
 import java.util.Optional;
 
-@ConfigMapping(prefix = "kind", namingStrategy = ConfigMapping.NamingStrategy.VERBATIM)
+@ConfigMapping(prefix = "kube", namingStrategy = ConfigMapping.NamingStrategy.VERBATIM)
 public interface ClientConfig {
     /**
      * Version of kubernetes to be installed
