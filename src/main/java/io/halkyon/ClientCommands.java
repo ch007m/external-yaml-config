@@ -1,9 +1,7 @@
 package io.halkyon;
 
-import io.smallrye.config.ConfigSourceFactory;
 import io.smallrye.config.SmallRyeConfig;
 import io.smallrye.config.SmallRyeConfigBuilder;
-import io.smallrye.config.source.yaml.YamlConfigSource;
 import io.smallrye.config.source.yaml.YamlLocationConfigSourceFactory;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.config.spi.ConfigSource;
@@ -31,9 +29,11 @@ public class ClientCommands implements Callable {
     @Override
     public Integer call() throws Exception {
         if (configfile != null) {
+
             System.out.println("Yaml config file: " + configfile.getAbsolutePath());
 
             System.setProperty(SMALLRYE_CONFIG_LOCATIONS, configfile.getAbsolutePath());
+
             SmallRyeConfig config = ConfigProvider.getConfig().unwrap(SmallRyeConfig.class);
             SmallRyeConfig ClientConfig = new SmallRyeConfigBuilder()
                 .withMapping(ClientConfig.class)
@@ -62,6 +62,7 @@ public class ClientCommands implements Callable {
                     }
                 })
                 .build();
+
             cfg = ClientConfig.getConfigMapping(ClientConfig.class);
             System.out.println("Kube version: " + cfg.kubernetesVersion().get());
             System.out.println("Name: " + cfg.name());
